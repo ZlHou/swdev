@@ -1,0 +1,98 @@
+<html class="x-admin-sm" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>项目详情</title>
+    <header th:replace="header::html"></header>
+</head>
+
+<body>
+<div class="x-body">
+    <form class="layui-form">
+        <input type="hidden" id="projectId" name="id" th:value="${project.id}">
+
+        <div class="layui-form-item">
+            <label for="L_projectname" class="layui-form-label">
+                <span class="x-red"></span>项目名
+            </label>
+            <div class="layui-input-inline">
+                <input type="text" id="L_projectname" th:value="${project.name}" name="projectName" required="" lay-verify="projectName" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label for="L_description" class="layui-form-label">
+                <span class="x-red"></span>项目介绍
+            </label>
+            <div class="layui-input-inline">
+                <input type="text" id="L_description" th:value="${project.description}" name="description" required=""  autocomplete="off" class="layui-input">
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <label for="L_create" class="layui-form-label">创建日期</label>
+            <div class="layui-input-inline">
+                <input type="text" id="L_create"  th:value="${#dates.format(project.createTime, 'yyyy-MM-dd')}"  name='birthday' lay-verify="date" placeholder="yyyy-MM-dd" class="layui-input">
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <label for="L_update" class="layui-form-label">最后更新日期</label>
+            <div class="layui-input-inline">
+                <input type="text" id="L_update"  th:value="${#dates.format(project.updateTime, 'yyyy-MM-dd')}"  name='birthday' lay-verify="date" placeholder="yyyy-MM-dd" class="layui-input">
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <button  class="layui-btn" lay-filter="confirm" lay-submit="">
+                &nbsp;&nbsp;&nbsp;确认
+            </button>
+        </div>
+    </form>
+</div>
+<script>
+    layui.use(['form','layer', 'laydate'], function(){
+        $ = layui.jquery;
+        var form = layui.form
+            ,layer = layui.layer
+            ,laydate = layui.laydate;
+
+        //日期
+        laydate.render({
+            elem: '#L_create'
+            ,format: 'yyyy-MM-dd' //可任意组合
+        });
+
+        laydate.render({
+            elem: '#L_update'
+            ,format: 'yyyy-MM-dd' //可任意组合
+        });
+
+
+        //监听提交
+        form.on('submit(confirm)', function(data){
+            $.ajax({
+                url:"/project/edit",
+                type:"POST",
+                data:data.field,
+                dataType:'json',
+                success:function(result){
+                    if(result.code == 500 || result.code == 5000100 || result.code == 5000101 || result.code == 5000102){
+                        layer.alert(result.msg);
+                    }else{
+                        //关闭当前frame
+                        xadmin.close();
+                        // 可以对父窗口进行刷新
+                        xadmin.father_reload();
+
+                    }
+
+                }
+            });
+            return false;
+        });
+    });
+
+
+</script>
+</body>
+</html>

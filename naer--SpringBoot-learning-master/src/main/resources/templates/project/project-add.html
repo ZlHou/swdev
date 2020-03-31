@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html class="x-admin-sm" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>创建项目信息</title>
+    <header th:replace="header::html"></header>
+</head>
+
+<body>
+<div class="x-body">
+    <form class="layui-form">
+
+        <div class="layui-form-item">
+            <label for="L_username" class="layui-form-label">
+                <span class="x-red">*</span>项目名称
+            </label>
+            <div class="layui-input-inline">
+                <input type="text" id="L_username" th:value="${project.name}" name="name" lay-verify="required" autocomplete="off" class="layui-input">
+            </div>
+            <div class="layui-form-mid layui-word-aux">
+                项目名称不应超过20个字
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label for="L_pass" class="layui-form-label">
+                <span class="x-red">*</span>项目描述
+            </label>
+            <div class="layui-input-inline">
+                <input type="text" id="L_pass" th:value="${project.description}" name="description" lay-verify="pass" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            </label>
+            <button  class="layui-btn" lay-filter="add" lay-submit="">
+                &nbsp;&nbsp;&nbsp;申请
+            </button>
+        </div>
+
+    </form>
+</div>
+<script>
+
+    layui.use(['form','layer', 'laydate'], function(){
+        $ = layui.jquery;
+        var form = layui.form
+            ,layer = layui.layer
+            ,laydate = layui.laydate;
+
+
+        //自定义验证规则
+        form.verify({
+
+        });
+
+        //监听提交
+        form.on('submit(add)', function(data){
+            $.ajax({
+                url:"/project/add",
+                type:"POST",
+                data:data.field,
+                dataType:'json',
+                success:function(result){
+                    if(result.code == 500 || result.code == 5000100 || result.code == 5000101 || result.code == 5000102){
+                        layer.alert(result.msg);
+                    }else{
+                        layer.alert("上传成功", {icon: 6},function () {
+                            //关闭当前frame
+                            xadmin.close();
+                            // 可以对父窗口进行刷新
+                            xadmin.father_reload();
+                        });
+                    }
+                }
+            });
+            return false;
+        });
+
+
+    });
+    function getAllProject(callback){
+        $.ajax({
+            url:"/project/all",
+            type:"GET",
+            dataType:'json',
+            success:function(result){
+                var html = "";
+                if(result.datas && result.datas.length > 0){
+                    for(i in result.datas ){
+                        html += '<input type="radio"  name="roleId" value="'+result.datas[i].id+'" title="'+result.datas[i].name+'" >' +
+                            '<div class="layui-unselect layui-form-radio layui-form-radioed"><i class="layui-anim layui-icon"></i><div>'+result.datas[i].name+'</div></div>';
+                    }
+                    $(".show-role-container").html(html);
+                    callback();
+                }
+            }
+        });
+    }
+</script>
+</body>
+</html>
