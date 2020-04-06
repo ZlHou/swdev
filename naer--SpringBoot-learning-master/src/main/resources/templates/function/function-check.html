@@ -2,45 +2,52 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>功能详情</title>
+    <title>项目详情</title>
     <header th:replace="header::html"></header>
 </head>
 
 <body>
 <div class="x-body">
     <form class="layui-form">
-        <input type="hidden" id="projectId" name="id" th:value="${project.id}">
 
         <div class="layui-form-item">
             <label for="L_projectname" class="layui-form-label">
-                <span class="x-red"></span>项目名称
+                <span class="x-red"></span>功能id
             </label>
             <div class="layui-input-inline">
-                <input type="text" id="L_projectname" th:value="${project.name}" name="projectName" required="" lay-verify="projectName" autocomplete="off" class="layui-input" disabled>
+                <input type="text" id="L_projectname" th:value="${function.functionId}" name="projectName" required="" lay-verify="projectName" autocomplete="off" class="layui-input" disabled>
             </div>
         </div>
+
         <div class="layui-form-item">
             <label for="L_description" class="layui-form-label">
-                <span class="x-red"></span>项目介绍
+                <span class="x-red"></span>项目id
             </label>
             <div class="layui-input-inline">
-                <input type="text" id="L_description" th:value="${project.description}" name="description" required=""  autocomplete="off" class="layui-input" disabled>
+                <input type="text" id="L_description" th:value="${function.projectId}" name="description" required=""  autocomplete="off" class="layui-input" disabled>
             </div>
         </div>
 
         <div class="layui-form-item">
-            <label for="L_create" class="layui-form-label">创建日期</label>
-            <div class="layui-input-inline">
-                <input type="text" id="L_create"  th:value="${#dates.format(project.createTime, 'yyyy-MM-dd')}"  name='birthday' lay-verify="date" placeholder="yyyy-MM-dd" class="layui-input" disabled>
+            <label for="L_description2" class="layui-form-label">
+                <span class="x-red"></span>责任人id
+            </label>
+            <div class="layui-input-inline2">
+                <input type="text" id="L_description2" th:value="${function.userId}" name="description" required=""  autocomplete="off" class="layui-input" disabled>
             </div>
         </div>
 
         <div class="layui-form-item">
-            <label for="L_update" class="layui-form-label">最后更新日期</label>
-            <div class="layui-input-inline">
-                <input type="text"  id="L_update"  th:value="${#dates.format(project.updateTime, 'yyyy-MM-dd')}"  name='birthday' lay-verify="date" placeholder="yyyy-MM-dd" class="layui-input" disabled>
+            <label for="L_description3" class="layui-form-label">
+                <span class="x-red"></span>功能描述
+            </label>
+            <div class="layui-input-inline2">
+                <input type="text" id="L_description3" th:value="${function.description}" name="description" required=""  autocomplete="off" class="layui-input" disabled>
             </div>
         </div>
+
+
+
 
         <div class="layui-form-item">
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -72,7 +79,7 @@
         //监听提交
         form.on('submit(confirm)', function(data){
             $.ajax({
-                url:"/config/edit",
+                url:"/function/edit",
                 type:"POST",
                 data:data.field,
                 dataType:'json',

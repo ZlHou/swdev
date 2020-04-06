@@ -3,6 +3,7 @@ package com.sxbang.friday.controller;
 
 import com.sxbang.friday.base.result.PageTableRequest;
 import com.sxbang.friday.base.result.Results;
+import com.sxbang.friday.model.FunctionEntity;
 import com.sxbang.friday.model.ProjectEntity;
 import com.sxbang.friday.model.ProjectUser;
 import com.sxbang.friday.model.SysUser;

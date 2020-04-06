@@ -238,9 +238,10 @@ CREATE TABLE `sys_project` (
   `createTime` datetime NOT NULL,
   `updateTime` datetime NOT NULL,
   `status` VARCHAR (255)NOT NULL,
-  PRIMARY KEY (`id`),
+  PRIMARY KEY (`id`)
+  )
   ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4;
-)
+
 
 INSERT INTO `sys_project` VALUES ('1', 'test1', 'test1', '2017-05-01 13:25:39', '2019-06-04 02:25:13','审批通过');
 INSERT INTO `sys_project` VALUES ('3', 'test2', 'test2', '2017-05-01 13:25:39', '2019-06-04 02:25:13','审批通过');
@@ -251,8 +252,8 @@ CREATE TABLE `sys_project_user` (
 `projectId` int(11) NOT NULL,
 `userId` int(11) NOT NULL,
   PRIMARY KEY (`projectId`,`userId`),
-  CONSTRAINT `fk_projectId` FOREIGN KEY (`projectId`) REFERENCES `sys_project` (`id`) ON DELETE CASCADE,
-  CONSTRAINT `fk_userId` FOREIGN KEY (`userId`) REFERENCES `sys_user` (`id`) ON DELETE CASCADE
+  CONSTRAINT `fk_projectId` FOREIGN KEY (`projectId`) REFERENCES `sys_project` (`id`) ON DELETE CASCADE
+ -- CONSTRAINT `fk_userId` FOREIGN KEY (`userId`) REFERENCES `sys_user` (`id`) ON DELETE CASCADE
 )ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 INSERT INTO `sys_project_user` VALUES ('3', '3');
