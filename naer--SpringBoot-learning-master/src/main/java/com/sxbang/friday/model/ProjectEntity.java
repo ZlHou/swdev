@@ -1,7 +1,7 @@
 package com.sxbang.friday.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.sun.xml.internal.bind.v2.model.core.ID;
+//import com.sun.xml.internal.bind.v2.model.core.ID;
 import lombok.Data;
 import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.RequestMapping;
