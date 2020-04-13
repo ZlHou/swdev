@@ -25,12 +25,12 @@ public class ConfigServiceImpl implements ConfigService {
     }
 
     @Override
-    public List<SysUser> getAllUsersById(int projectId) {
+    public List<SysUser> getAllUsersById(String projectId) {
         return configDao.getAllUsersById(projectId);
     }
 
     @Override
-    public Results save(int projectId, int userId) {
+    public Results save(String projectId, int userId) {
 
         System.out.println(projectId + "!!!!!!!!!!!!!!!!!!!!!"+userId);
         configDao.save(projectId,userId);

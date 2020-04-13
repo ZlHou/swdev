@@ -16,7 +16,7 @@ public interface ProjectService {
 
     Results<ProjectEntity> save(ProjectEntity projectEntity);
 
-    ProjectEntity getProjectById(Integer id);
+    ProjectEntity getProjectById(String id);
 
     Results update(ProjectEntity projectEntity);
 

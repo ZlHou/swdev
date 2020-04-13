@@ -29,7 +29,7 @@ public interface ProjectDao {
     int saveProject(ProjectEntity project);
 
     @Select("select * from sys_project t where t.id = #{id}")
-    ProjectEntity getById(Integer id);
+    ProjectEntity getById(String id);
 
     int update(ProjectEntity project);
 

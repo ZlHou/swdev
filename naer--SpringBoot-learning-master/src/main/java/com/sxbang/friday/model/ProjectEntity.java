@@ -10,20 +10,36 @@ import java.util.Date;
 
 @Repository
 @Data
-public class ProjectEntity extends BaseEntity<Integer>{
+public class ProjectEntity {
 
+    private String id;
     private String name;
     private String description;
 
+    private Date createTime;
+
+    private Date updateTime;
+
     private String status = "未审批";          //审批状态：未审批，同意，拒绝
 
+    private Date startTime;
+
+    private Date finishTime;
+
+    private String technology;
 
     @Override
     public String toString() {
         return "ProjectEntity{" +
-                "name='" + name + '\'' +
+                "id='" + id + '\'' +
+                ", name='" + name + '\'' +
                 ", description='" + description + '\'' +
-                ", proStatus='" + status + '\'' +
+                ", createTime=" + createTime +
+                ", updateTime=" + updateTime +
+                ", status='" + status + '\'' +
+                ", startTIme=" + startTime +
+                ", finishTime=" + finishTime +
+                ", technology='" + technology + '\'' +
                 '}';
     }
 }

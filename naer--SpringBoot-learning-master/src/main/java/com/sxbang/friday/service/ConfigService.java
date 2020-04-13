@@ -12,9 +12,9 @@ import java.util.List;
 public interface ConfigService {
     Integer getProjectIdByName(String name);
 
-    List<SysUser> getAllUsersById(int projectId);
+    List<SysUser> getAllUsersById(String projectId);
 
-    Results save(int projectId, int userId);
+    Results save(String projectId, int userId);
 
     List<ProjectEntity> getAllProjcets();
 

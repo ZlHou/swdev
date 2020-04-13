@@ -11,7 +11,7 @@ import java.util.List;
 @Repository
 @Data
 public class ProjectUser {
-    int projectId;
+    String projectId;
 
     String userName;
 

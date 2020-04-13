@@ -64,7 +64,7 @@ public class ConfigController {
 
     @GetMapping(value = "/confirm")
     @ResponseBody
-    public Results save(int projectId, int uId){
+    public Results save(String projectId, int uId){
         List<SysUser> list = configService.getAllUsersById(projectId);
         for(SysUser user :list){
             if(uId == user.getId()){

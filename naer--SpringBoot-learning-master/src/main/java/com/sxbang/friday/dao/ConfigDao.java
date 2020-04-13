@@ -12,10 +12,10 @@ public interface ConfigDao {
     Integer getProjectIdByName(String name);
 
     @Select("select * from sys_user t where t.id in (select userId from sys_project_user a where a.projectId = #{projectId})")
-    List<SysUser> getAllUsersById(int projectId);
+    List<SysUser> getAllUsersById(String projectId);
 
     @Insert("Insert into sys_project_user(projectId,userId) values(#{arg0},#{arg1})")
-    int save(int projectId, int userId);
+    int save(String projectId, int userId);
 
     @Select("select * from sys_project t where t.id in (select distinct projectId from sys_project_user)")
     List<ProjectEntity> getAllProjects();

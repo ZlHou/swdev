@@ -43,8 +43,34 @@
         </div>
 
         <div class="layui-form-item">
+            <label for="L_start" class="layui-form-label">预计开始日期</label>
+            <div class="layui-input-inline">
+                <input type="text" id="L_start"  th:value="${#dates.format(project.startTime, 'yyyy-MM-dd')}"  name='birthday' lay-verify="date" placeholder="yyyy-MM-dd" class="layui-input">
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <label for="L_finish" class="layui-form-label">交付日期</label>
+            <div class="layui-input-inline">
+                <input type="text" id="L_finish"  th:value="${#dates.format(project.finishTime, 'yyyy-MM-dd')}"  name='birthday' lay-verify="date" placeholder="yyyy-MM-dd" class="layui-input">
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <label for="L_tec" class="layui-form-label">
+                <span class="x-red"></span>设计技术
+            </label>
+            <div class="layui-input-inline">
+                <input type="text" id="L_tec" th:value="${project.technology}" name="description" required=""  autocomplete="off" class="layui-input">
+            </div>
+        </div>
+
+
+
+        <div class="layui-form-item">
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <button  class="layui-btn" lay-filter="confirm" lay-submit="">
-                &nbsp;&nbsp;&nbsp;确认
+                确认
             </button>
         </div>
     </form>

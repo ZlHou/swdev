@@ -36,7 +36,7 @@ public class ProjectServiceImpl implements ProjectService {
     }
 
     @Override
-    public ProjectEntity getProjectById(Integer id) {
+    public ProjectEntity getProjectById(String id) {
         return projectDao.getById(id);
     }
 
